@@ -1,1 +1,1 @@
-# Dockerfile that installs varnish, configure and start it.
+# Dockerfile that installs varnish, configures and starts it.
