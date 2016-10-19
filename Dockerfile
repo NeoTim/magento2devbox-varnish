@@ -6,7 +6,7 @@ RUN mkdir /etc/varnish/default
 
 COPY conf/default.vcl /etc/varnish/default/default.vcl
 
-ADD entrypoint.sh /usr/local/bin/entrypoint.sh
+ADD conf/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
