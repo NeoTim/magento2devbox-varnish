@@ -7,6 +7,7 @@ import std;
 backend default {
     .host = "web";
     .port = "80";
+    .first_byte_timeout = 120s;
 }
 
 acl purge {
