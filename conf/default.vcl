@@ -7,7 +7,12 @@ import std;
 backend default {
     .host = "web";
     .port = "80";
-    .first_byte_timeout = 120s;
+}
+
+backend web_setup {
+    .host = "web";
+    .port = "80";
+    .first_byte_timeout = 600s;
 }
 
 acl purge {
@@ -15,6 +20,13 @@ acl purge {
 }
 
 sub vcl_recv {
+
+    set req.backend_hint = default;
+
+    if (req.url ~ "/setup") {
+        set req.backend_hint = web_setup;
+    }
+
     if (req.method == "PURGE") {
         if (client.ip !~ purge) {
             return (synth(405, "Method not allowed"));
